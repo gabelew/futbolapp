@@ -15,30 +15,34 @@
 
     function getRanking() {
       var games = [];
-      var rankingObj = {};
+      var outcomeObj = {};
+      var rankingArr = [];
       return getGames()
         .then (function (data) {
           games = data;
-          //console.log(data);
-          // Calculate outcome from each match
+          // Calculate outcome from each match and put into outcomeObj
           for (var i = 0; i < games.length; i++) {
-            if (!games[i].wasTie) {
               var teamOne = games[i].teamIds[0];
               var teamTwo = games[i].teamIds[1];
-              if (!rankingObj.hasOwnProperty(teamOne)) rankingObj[teamOne] = 0;
-              if (!rankingObj.hasOwnProperty(teamTwo)) rankingObj[teamTwo] = 0;
+            if (!games[i].wasTie && teamOne != teamTwo) {
+              if (!outcomeObj.hasOwnProperty(teamOne)) outcomeObj[teamOne] = 0;
+              if (!outcomeObj.hasOwnProperty(teamTwo)) outcomeObj[teamTwo] = 0;
 
               if (teamOne == games[i].winnerTeamId) {
-                rankingObj[teamOne]++;
-                rankingObj[teamTwo]--;
+                outcomeObj[teamOne]++;
+                outcomeObj[teamTwo]--;
               } else {
-                rankingObj[teamOne]--;
-                rankingObj[teamTwo]++;
+                outcomeObj[teamOne]--;
+                outcomeObj[teamTwo]++;
               }
               
             }
           }
-          return rankingObj;  
+
+          // Sort ranking by converting obj to array
+          for (var team in outcomeObj) rankingArr.push([team, outcomeObj[team]]);
+          rankingArr.sort(function (a, b) { return b[1] - a[1] });
+          return rankingArr;  
         });
     }
 

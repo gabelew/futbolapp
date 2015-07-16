@@ -25,6 +25,7 @@
         console.log('XHR Failed for getTeams.' + err);
       }
     }
+
   }
 
 })();

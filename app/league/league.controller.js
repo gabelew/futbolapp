@@ -15,20 +15,17 @@
     activate();
 
     function activate() {
-
-      return gamesService.getRanking()
+      return teamsService.getTeams()
+        .then(function (data) {
+          vm.teams = data;
+          gamesService.getRanking()
           .then(function (data) {
             vm.ranking = data;
-            console.log(vm.ranking);
-            return vm.ranking;
+            console.log(vm.teams, vm.ranking);
 
           });
+        })  
       
-      // return teamsService.getTeams()
-      //   .then(function (data) {
-      //     vm.teams = data;
-      //     return vm.teams;
-      //   });
     }
     
 
