@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+  <head>
+    <meta charset="UTF-8">
+    <title>GoFutbol</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular-route.js"></script>
+  </head>
+  <body ng-app="futbolApp">
+    <div id="wrapper">
+      <header>
+        <h1>GoFutbol</h1>
+        <nav></nav>
+      </header>
+      
+      <div id="main">
+        <div ng-view></div>
+      </div>
+      <footer></footer>
+    </div>
+
+    <!-- Modules -->
+    <script src="app/app.module.js"></script>
+
+    <script src="app/app.route.js"></script>
+
+    <!-- Controllers -->
+    <script src="app/league/league.controller.js"></script>
+    
+    <!-- Services -->
+    <script src="app/services/teams.service.js"></script>
+    
+    <!-- Directives -->
+
+  </body>
+</html>

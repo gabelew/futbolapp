@@ -1,0 +1,5 @@
+<div ng-repeat="team in league.teams">
+  <h2> {{ team.name }} </h2>
+  <img ng-src="{{ team.logoUrl }}"></img>
+  <p> Founded: {{ team.founded | date }} </p>
+</div>
