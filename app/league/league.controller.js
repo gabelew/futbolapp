@@ -11,6 +11,7 @@
     var vm = this;
     vm.teams = [];
     vm.ranking = [];
+    vm.rankedTeams = [];
 
     activate();
 
@@ -21,7 +22,10 @@
           gamesService.getRanking()
           .then(function (data) {
             vm.ranking = data;
-            console.log(vm.teams, vm.ranking);
+            for (var i = 0; i < vm.ranking.length; i++) {
+              vm.rankedTeams.push(vm.teams[parseInt(vm.ranking[i][0]) - 1]);
+            }
+            console.log(vm.teams, vm.rankedTeams);
 
           });
         })  
