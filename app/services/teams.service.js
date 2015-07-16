@@ -18,7 +18,6 @@
         .catch(getTeamsFailed);
 
       function getTeamsSuccess (response) {
-        console.log(response.data);
         return response.data;
       }
 
