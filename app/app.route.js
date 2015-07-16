@@ -10,10 +10,11 @@
       controllerAs: 'league',
       templateUrl: 'app/league/league.html'
     })
-    // .when('/teams/:teamId', {
-    //   controller: 'TeamController',
-    //   templateUrl: 'views/team.html'
-    // })
+    .when('/teams/:teamId', {
+      controller: 'TeamCtrl',
+      controllerAs: 'team',
+      templateUrl: 'app/team/team.html'
+    })
     .otherwise({
       redirectTo: '/teams'
     });
