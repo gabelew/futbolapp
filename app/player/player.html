@@ -4,3 +4,23 @@
 <p>Team: <a href="#/teams/{{ vm.player.teamId }}">{{ vm.player.teamId| teamIdToName }}</a></p>
 <p>Age: {{ vm.player.age }}</p>
 <p>Origin: {{ vm.player.origin.city }}, {{ vm.player.origin.country }}</p>
+
+<h2>Goals</h2>
+<p ng-if="vm.playerGoals.length == 0">N/A</p>
+<table ng-if="vm.playerGoals.length > 0">
+  <thead>
+    <tr>
+      <th>Match</th> <th>Match Minute</th> <th>Shot Distance</th> <th>Shot Location</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="goal in vm.playerGoals | orderBy:'matchId'">
+      <div>
+        <td>{{ goal.matchId }}</td>
+        <td>{{ goal.matchMinute }}</td>
+        <td>{{ goal.shot.distance}}m</td>
+        <td>{{ goal.shot.location }}</td>
+      </div>
+    </tr>
+  </tbody>
+</table> 
