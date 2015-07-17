@@ -1,0 +1,24 @@
+<h2>{{ vm.game.teamIds[0] | teamIdToName }} vs {{ vm.game.teamIds[1] | teamIdToName }} </h2> 
+<h2>{{ vm.game.teamGoals[vm.game.teamIds[0]] }} - {{ vm.game.teamGoals[vm.game.teamIds[1]] }}</h2>
+<h3>{{ vm.game.timestamp | date }} </h3>
+
+<h2>Goals</h2>
+<p ng-if="vm.gameGoals.length == 0">N/A</p>
+<table ng-if="vm.gameGoals.length > 0">
+  <thead>
+    <tr>
+      <th>Match Minute</th> <th>Scoring Team</th> <th>Player</th> <th>Shot Distance (meters)</th> <th>Shot Location</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="goal in vm.gameGoals | orderBy:'matchMinute'">
+      <div>
+        <td>{{ goal.matchMinute }}</td>
+        <td>{{ goal.teamId | teamIdToName }}</td>
+        <td>{{ goal.playerId }}</td>
+        <td>{{ goal.shot.distance}}</td>
+        <td>{{ goal.shot.location }}</td>
+      </div>
+    </tr>
+  </tbody>
+</table> 

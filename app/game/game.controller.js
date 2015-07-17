@@ -5,9 +5,9 @@
   .module('futbolApp')
   .controller('GameCtrl', GameCtrl);
 
-  GameCtrl.$inject = ['gamesService', '$routeParams'];
+  GameCtrl.$inject = ['gamesService', 'goalsService', '$routeParams'];
 
-  function GameCtrl (gamesService, $routeParams) {
+  function GameCtrl (gamesService, goalsService, $routeParams) {
     var vm = this;
 
     activate();

@@ -16,7 +16,7 @@
   <tbody>
     <tr ng-repeat="goal in vm.playerGoals | orderBy:'matchId'">
       <div>
-        <td>{{ goal.matchId }}</td>
+        <td><a href="#/games/{{ goal.matchId }}">{{ goal.matchId }}</a></td>
         <td>{{ goal.matchMinute }}</td>
         <td>{{ goal.shot.distance}}</td>
         <td>{{ goal.shot.location }}</td>
