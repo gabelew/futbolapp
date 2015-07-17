@@ -16,9 +16,10 @@
     activate();
 
     function activate() {
-      teamsService.getTeam($routeParams.teamId)
+      teamsService.getTeams()
         .then(function (data) {
-          vm.teamInfo = data;
+          vm.teams = data;
+          vm.teamInfo = data[$routeParams.teamId - 1];
         });
       gamesService.getGameDetails($routeParams.teamId)
         .then(function (data) {

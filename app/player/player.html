@@ -1,0 +1,6 @@
+<h2>Player: {{ vm.player.name }}</h2>
+<img ng-src="{{ vm.player.avatarUrl }}"></img>
+<p>Position: {{ vm.player.position }}</p>
+<p>Team: <a href="#/teams/{{ vm.player.teamId }}">{{ vm.player.teamId| teamIdToName }}</a></p>
+<p>Age: {{ vm.player.age }}</p>
+<p>Origin: {{ vm.player.origin.city }}, {{ vm.player.origin.country }}</p>
