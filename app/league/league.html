@@ -1,5 +1,17 @@
-<div ng-repeat="team in league.rankedTeams">
-  <h2> <a href="#/teams/{{ team.id }}"> {{ team.name }} </a></h2>
-  <img ng-src="{{ team.logoUrl }}"></img>
-  <p> Founded: {{ team.founded | date }} </p>
-</div>
+<table>
+  <thead>
+    <tr>
+      <th>Ranking</th> <th>Team</th> <th>Logo</th> <th>Founded</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="team in league.rankedTeams">
+      <div>
+        <td>{{ $index + 1 }}</td>
+        <td><a href="#/teams/{{ team.id }}">{{ team.name }}</a></td>
+        <td><img ng-src="{{ team.logoUrl }}"></img></td>
+        <td>Founded: {{ team.founded | date }}</td>
+      </div>
+    </tr>
+  </tbody>
+</table>

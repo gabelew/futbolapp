@@ -25,7 +25,6 @@
             for (var i = 0; i < vm.ranking.length; i++) {
               vm.rankedTeams.push(vm.teams[parseInt(vm.ranking[i][0]) - 1]);
             }
-
           });
         })  
       

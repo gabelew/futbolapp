@@ -9,10 +9,11 @@
 
   function teamsService($http) {
     return {
-       getTeams: getTeams
+       getTeams: getTeams,
+       getTeam: getTeam
     };
 
-    function getTeams() {
+    function getTeams () {
       return $http.get('https://futbol-api.goguardian.com/teams')
         .then(getTeamsSuccess)
         .catch(getTeamsFailed);
@@ -23,6 +24,20 @@
 
       function getTeamsFailed (err) {
         console.log('XHR Failed for getTeams.' + err);
+      }
+    }
+
+    function getTeam (teamId) {
+      return $http.get('https://futbol-api.goguardian.com/teams/' + teamId)
+        .then(getTeamSuccess)
+        .catch(getTeamFailed);
+
+      function getTeamSuccess (response) {
+        return response.data;
+      }
+
+      function getTeamFailed (err) {
+        console.log('XHR Failed for getTeam ' + teamId, err);
       }
     }
 
