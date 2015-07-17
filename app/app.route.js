@@ -20,6 +20,11 @@
       controllerAs: 'vm',
       templateUrl: 'app/player/player.html'
     })
+    .when('/games/:gameId', {
+      controller: 'GameCtrl',
+      controllerAs: 'vm',
+      templateUrl: 'app/game/game.html'
+    })
     .otherwise({
       redirectTo: '/teams'
     });

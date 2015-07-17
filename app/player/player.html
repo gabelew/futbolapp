@@ -10,7 +10,7 @@
 <table ng-if="vm.playerGoals.length > 0">
   <thead>
     <tr>
-      <th>Match</th> <th>Match Minute</th> <th>Shot Distance</th> <th>Shot Location</th>
+      <th>Match</th> <th>Match Minute</th> <th>Shot Distance (meters)</th> <th>Shot Location</th>
     </tr>
   </thead>
   <tbody>
@@ -18,7 +18,7 @@
       <div>
         <td>{{ goal.matchId }}</td>
         <td>{{ goal.matchMinute }}</td>
-        <td>{{ goal.shot.distance}}m</td>
+        <td>{{ goal.shot.distance}}</td>
         <td>{{ goal.shot.location }}</td>
       </div>
     </tr>

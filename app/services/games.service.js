@@ -10,6 +10,7 @@
   function gamesService($http) {
     return {
        getGames: getGames,
+       getGame: getGame,
        getRanking: getRanking,
        getGameDetails: getGameDetails,
        getWinLoss: getWinLoss,
@@ -29,6 +30,20 @@
 
       function getGamesFailed (err) {
         console.log('XHR Failed for getGames.' + err);
+      }
+    }
+
+    function getGame(gameId) {
+      return $http.get('https://futbol-api.goguardian.com/matches/' + gameId)
+        .then(getGameSuccess)
+        .catch(getGameFailed);
+
+      function getGameSuccess (response) {
+        return response.data;
+      }
+
+      function getGameFailed (err) {
+        console.log('XHR Failed for getGame.' + err);
       }
     }
 
