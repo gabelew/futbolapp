@@ -11,6 +11,7 @@
     return {
        getGames: getGames,
        getRanking: getRanking,
+       getGameDetails: getGameDetails,
        getWinLoss: getWinLoss,
        getTeamRanking: getTeamRanking,
        getTeamGames: getTeamGames
@@ -31,16 +32,79 @@
       }
     }
 
+    function getGameDetails(teamId) {
+      var allGames = [];
+      var outcomeObj = {};
+      var rankingArr = [];
+      var gameDetails = {
+        "games" : [],
+        "winLoss": {"wins" : 0, "losses" : 0},
+        "ranking" : -1
+      };
+      return getGames()
+        .then(function (data) {
+          allGames = data;
+          for (var i = 0; i < allGames.length; i++) {
+            var teamOne = allGames[i].teamIds[0];
+            var teamTwo = allGames[i].teamIds[1];
+            // Get team's games
+            if (teamOne != teamTwo 
+              && (teamOne == teamId || teamTwo == teamId)) {
+              gameDetails.games.push(allGames[i]);
+            }
+            // Get win loss ratio
+            if (!allGames[i].wasTie && teamOne != teamTwo 
+              && (teamOne == teamId || teamTwo == teamId)) {
+              if(teamId == allGames[i].winnerTeamId) {
+                gameDetails.winLoss["wins"]++;
+              } else {
+                gameDetails.winLoss["losses"]++;
+              }
+            }
+            // Get team outcomes
+            if (!allGames[i].wasTie && teamOne != teamTwo) {
+              if (!outcomeObj.hasOwnProperty(teamOne)) outcomeObj[teamOne] = 0;
+              if (!outcomeObj.hasOwnProperty(teamTwo)) outcomeObj[teamTwo] = 0;
+
+              if (teamOne == allGames[i].winnerTeamId) {
+                outcomeObj[teamOne]++;
+                outcomeObj[teamTwo]--;
+              } else {
+                outcomeObj[teamOne]--;
+                outcomeObj[teamTwo]++;
+              }
+              
+            }
+          }
+
+          // Get sorted ranking array
+          for (var team in outcomeObj) rankingArr.push([team, outcomeObj[team]]);
+          rankingArr.sort(function (a, b) { return b[1] - a[1] });
+
+          // Get team's ranking
+          for (var i = 0; i < rankingArr.length; i++) {
+            var team = parseInt(rankingArr[i][0]);
+            if (team == teamId) {
+              gameDetails.ranking = i + 1;
+            }
+          }
+
+          return gameDetails;
+        });
+    }
+
     function getTeamGames(teamId) {
       var allGames = [];
       var teamGames = [];
       return getGames()
         .then(function (data) {
           allGames = data;
-          for (var i = 0; i < games.length; i++) {
+          for (var i = 0; i < allGames.length; i++) {
+            var teamOne = allGames[i].teamIds[0];
+            var teamTwo = allGames[i].teamIds[1];
             if (teamOne != teamTwo 
               && (teamOne == teamId || teamTwo == teamId)) {
-              teamGames.push(games[i]);
+              teamGames.push(allGames[i]);
             }
           }
           return teamGames;

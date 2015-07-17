@@ -5,12 +5,12 @@
     </tr>
   </thead>
   <tbody>
-    <tr ng-repeat="team in league.rankedTeams">
+    <tr ng-repeat="team in vm.rankedTeams">
       <div>
         <td>{{ $index + 1 }}</td>
         <td><a href="#/teams/{{ team.id }}">{{ team.name }}</a></td>
         <td><img ng-src="{{ team.logoUrl }}"></img></td>
-        <td>Founded: {{ team.founded | date }}</td>
+        <td>{{ team.founded | date }}</td>
       </div>
     </tr>
   </tbody>

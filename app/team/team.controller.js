@@ -5,27 +5,30 @@
   .module('futbolApp')
   .controller('TeamCtrl', TeamCtrl);
 
-  TeamCtrl.$inject = ['teamsService', 'gamesService', '$routeParams'];
+  TeamCtrl.$inject = ['teamsService', 'gamesService'
+                    , 'playersService', '$routeParams'];
 
-  function TeamCtrl (teamsService, gamesService, $routeParams) {
+  function TeamCtrl (teamsService, gamesService
+                  , playersService, $routeParams) {
     var vm = this;
-    vm.team = {};
+    vm.teamInfo = {};
 
     activate();
 
     function activate() {
       teamsService.getTeam($routeParams.teamId)
         .then(function (data) {
-          vm.team = data;
+          vm.teamInfo = data;
         });
-      gamesService.getWinLoss($routeParams.teamId)
+      gamesService.getGameDetails($routeParams.teamId)
         .then(function (data) {
-          vm.team.winLoss = data; 
+          vm.gameDetails = data;
         });
-      gamesService.getTeamRanking($routeParams.teamId)
+      playersService.getPlayers($routeParams.teamId)
         .then(function (data) {
-          vm.team.ranking = data;
-        });     
+          vm.players = data;
+        });
+
     }
 
   }

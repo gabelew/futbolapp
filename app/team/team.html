@@ -1,3 +1,39 @@
 <a href="#/teams">Back</a>
+<table>
+  <thead>
+    <tr>
+      <th>Ranking</th> <th>Win/Loss Ratio</th> <th>Team</th> <th>Logo</th> <th>Founded</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <div>
+        <td>{{ vm.gameDetails.ranking }}</td>
+        <td>{{ vm.gameDetails.winLoss.wins }}:{{ vm.gameDetails.winLoss.losses }}</td>
+        <td>{{ vm.teamInfo.name }}</td>
+        <td><img ng-src="{{ vm.teamInfo.logoUrl }}"></img></td>
+        <td>{{ vm.teamInfo.founded | date }}</td>
+      </div>
+    </tr>
+  </tbody>
+</table> 
 
-<p> {{ team }} </p>
+<table>
+  <thead>
+    <tr>
+      <th>Date</th> <th>Opponent</th> <th>Outcome</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="game in vm.gameDetails.games | orderBy:'timestamp':true">
+      <div>
+        <td>{{ game.timestamp | date:'shortDate' }}</td>
+        <td ng-if="game.teamIds[0] == vm.teamInfo.id"><a href="#/teams/{{ game.teamIds[1] }}">{{ game.teamIds[1] }}</a></td>
+        <td ng-if="game.teamIds[1] == vm.teamInfo.id"><a href="#/teams/{{ game.teamIds[0] }}">{{ game.teamIds[0] }}</a></td>
+        <td ng-if="game.wasTie">Tie</td>
+        <td ng-if="vm.teamInfo.id == game.winnerTeamId">Win</td>
+        <td ng-if="!game.wasTie && vm.teamInfo.id != game.winnerTeamId">Loss</td>
+      </div>
+    </tr>
+  </tbody>
+</table> 

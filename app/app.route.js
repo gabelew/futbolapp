@@ -7,12 +7,12 @@
     $routeProvider
     .when('/teams', {
       controller: 'LeagueCtrl',
-      controllerAs: 'league',
+      controllerAs: 'vm',
       templateUrl: 'app/league/league.html'
     })
     .when('/teams/:teamId', {
       controller: 'TeamCtrl',
-      controllerAs: 'team',
+      controllerAs: 'vm',
       templateUrl: 'app/team/team.html'
     })
     .otherwise({
