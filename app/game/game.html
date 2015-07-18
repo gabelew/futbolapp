@@ -1,5 +1,5 @@
 <div class="jumbotron">
-  <h2 class="text-center"><a href="#/teams/{{ vm.game.teamIds[0] }}">{{ vm.game.teamIds[0] | teamIdToName }}</a> vs <a href="#/teams/{{ vm.game.teamIds[1] }}">{{ vm.game.teamIds[1] | teamIdToName }}</a></h2> 
+  <h2 class="text-center"><a href="#/teams/{{ vm.game.teamIds[0] }}">{{ vm.game.teamNames[0] }}</a> vs <a href="#/teams/{{ vm.game.teamIds[1] }}">{{ vm.game.teamNames[1] }}</a></h2> 
   <h2 class="text-center">{{ vm.game.teamGoals[vm.game.teamIds[0]] }} - {{ vm.game.teamGoals[vm.game.teamIds[1]] }}</h2>
   <h3 class="text-center">{{ vm.game.timestamp | date:'EEE, MMM d, yyyy' }} </h3>
 </div>
@@ -17,8 +17,8 @@
       <tr ng-repeat="goal in vm.gameGoals | orderBy:'matchMinute'">
         <div>
           <td class="text-center">{{ goal.matchMinute }}</td>
-          <td class="text-center"><a href="#/teams/{{ goal.teamId }}">{{ goal.teamId | teamIdToName }}</a></td>
-          <td class="text-center"><a href="#/players/{{ goal.playerId }}">{{ goal.playerId }}</a></td>
+          <td class="text-center"><a href="#/teams/{{ goal.teamId }}">{{ goal.teamName }}</a></td>
+          <td class="text-center"><a href="#/players/{{ goal.playerId }}">{{ goal.playerName }}</a></td>
           <td class="text-center">{{ goal.shot.distance}}</td>
           <td class="text-center">{{ goal.shot.location }}</td>
         </div>

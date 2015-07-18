@@ -5,9 +5,9 @@
   .module('futbolApp')
   .controller('PlayerCtrl', PlayerCtrl);
 
-  PlayerCtrl.$inject = ['playersService', 'goalsService', '$routeParams'];
+  PlayerCtrl.$inject = ['playersService', 'goalsService', '$routeParams', 'teamsService'];
 
-  function PlayerCtrl(playersService, goalsService, $routeParams) {
+  function PlayerCtrl(playersService, goalsService, $routeParams, teamsService) {
     var vm = this;
 
     activate();
@@ -16,6 +16,10 @@
       playersService.getPlayer($routeParams.playerId)
         .then(function (data) {
           vm.player = data;
+          teamsService.getTeamName(vm.player.teamId)
+            .then(function (data) {
+              vm.player.teamName = data;
+            });
         });
 
       goalsService.getPlayerGoals($routeParams.playerId)

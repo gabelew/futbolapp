@@ -10,7 +10,8 @@
   function teamsService($http) {
     return {
        getTeams: getTeams,
-       getTeam: getTeam
+       getTeam: getTeam,
+       getTeamName: getTeamName
     };
 
     function getTeams () {
@@ -25,6 +26,13 @@
       function getTeamsFailed (err) {
         console.log('XHR Failed for getTeams.' + err);
       }
+    }
+
+    function getTeamName (teamId) {
+      return getTeam(teamId)
+        .then(function (data) {
+          return data.name;
+        });
     }
 
     function getTeam (teamId) {

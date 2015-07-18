@@ -16,14 +16,27 @@
     activate();
 
     function activate() {
-      teamsService.getTeams()
+      teamsService.getTeam($routeParams.teamId)
         .then(function (data) {
-          vm.teams = data;
-          vm.teamInfo = data[$routeParams.teamId - 1];
+          vm.teamInfo = data;
         });
       gamesService.getGameDetails($routeParams.teamId)
         .then(function (data) {
           vm.gameDetails = data;
+          // Get team names for each game from team ids array
+          angular.forEach(vm.gameDetails.games, function(game, index) {
+            game.teamNames = [];
+            var teamOne = game.teamIds[0];
+            var teamTwo = game.teamIds[1];
+            teamsService.getTeamName(teamOne)
+              .then(function (data) {
+                game.teamNames[0] = data;
+              });
+            teamsService.getTeamName(teamTwo)
+              .then(function (data) {
+                game.teamNames[1] = data;
+              });
+          });
         });
       playersService.getPlayers($routeParams.teamId)
         .then(function (data) {

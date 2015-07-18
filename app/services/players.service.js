@@ -10,7 +10,8 @@
   function playersService($http) {
     return {
       getPlayers: getPlayers,
-      getPlayer: getPlayer
+      getPlayer: getPlayer,
+      getPlayerName: getPlayerName
     };
 
     function getPlayers (teamId) {
@@ -39,6 +40,13 @@
       function getPlayerFailed (err) {
         console.log('XHR failed for getPlayer' + err);
       }
+    }
+
+    function getPlayerName (playerId) {
+      return getPlayer(playerId)
+        .then(function (data) {
+          return data.name;
+        });
     }
   }
 })();

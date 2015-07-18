@@ -15,10 +15,11 @@
     </thead>
     <tbody>
       <tr ng-repeat="game in vm.gameDetails.games | orderBy:'timestamp':true">
+        <p> {{game.teamNames[0]}} {{game.teamNames[1]}}</p>
         <div>
           <td class="text-center"><a href="#/games/{{ game.id }}">{{ game.timestamp | date:'M/d/yy, h:mma' }}</a></td>
-          <td class="text-center" ng-if="game.teamIds[0] == vm.teamInfo.id"><a href="#/teams/{{ game.teamIds[1] }}">{{ game.teamIds[1] | teamIdToName }} </a></td>
-          <td class="text-center" ng-if="game.teamIds[1] == vm.teamInfo.id"><a href="#/teams/{{ game.teamIds[0] }}">{{ game.teamIds[0] | teamIdToName }} </a></td>
+          <td class="text-center" ng-if="game.teamIds[0] == vm.teamInfo.id"><a href="#/teams/{{ game.teamIds[1] }}">{{ game.teamNames[1]}} </a></td>
+          <td class="text-center" ng-if="game.teamIds[1] == vm.teamInfo.id"><a href="#/teams/{{ game.teamIds[0] }}">{{ game.teamNames[0] }} </a></td>
           <td class="text-center" ng-if="game.wasTie">Tie</td>
           <td class="text-center" ng-if="!game.wasTie && vm.teamInfo.id == game.winnerTeamId">Win</td>
           <td class="text-center" ng-if="!game.wasTie && vm.teamInfo.id != game.winnerTeamId">Loss</td>
