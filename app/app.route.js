@@ -3,9 +3,9 @@
   .module('futbolApp')
   .config(config);
 
-  function config ($routeProvider) {
+  function config ($routeProvider, $locationProvider) {
     $routeProvider
-    .when('/teams', {
+    .when('/', {
       controller: 'LeagueCtrl',
       controllerAs: 'vm',
       templateUrl: 'app/league/league.html'
@@ -26,8 +26,11 @@
       templateUrl: 'app/game/game.html'
     })
     .otherwise({
-      redirectTo: '/teams'
+      redirectTo: '/'
     });
+
+    // use the HTML5 History API
+    $locationProvider.html5Mode(true);
   }
 })();
 

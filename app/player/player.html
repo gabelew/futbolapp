@@ -1,7 +1,7 @@
 <div class="jumbotron">
   <h2 class="text-center">{{ vm.player.name }}</h2>
   <img ng-src="{{ vm.player.avatarUrl }}" class="img-responsive img-circle center-block"></img>
-  <h3 class="text-center"><a href="#/teams/{{ vm.player.teamId }}">{{ vm.player.teamName }}</a></h3>
+  <h3 class="text-center"><a href="/teams/{{ vm.player.teamId }}">{{ vm.player.teamName }}</a></h3>
   <p class="text-center">{{ vm.player.position }}</p>
   <p class="text-center">{{ vm.player.age }} years</p>
   <p class="text-center">{{ vm.player.origin.city }}, {{ vm.player.origin.country }}</p>
@@ -19,7 +19,7 @@
     <tbody>
       <tr ng-repeat="goal in vm.playerGoals | orderBy:'matchId'">
         <div>
-          <td class="text-center"><a href="#/games/{{ goal.matchId }}">{{ goal.matchId }}</a></td>
+          <td class="text-center"><a href="/games/{{ goal.matchId }}">{{ goal.matchId }}</a></td>
           <td class="text-center">{{ goal.matchMinute }}</td>
           <td class="text-center">{{ goal.shot.distance}}</td>
           <td class="text-center">{{ goal.shot.location }}</td>
