@@ -1,59 +1,39 @@
-<a href="#/teams">Back</a>
+<div class="jumbotron">
+  <img ng-src="{{ vm.teamInfo.logoUrl }}" class="img-responsive img-circle center-block"></img>
+  <h2 class="text-center">#{{ vm.gameDetails.ranking }} {{ vm.teamInfo.name }}</h2>
+  <h2 class="text-center">{{ vm.gameDetails.winLoss.wins }} - {{ vm.gameDetails.winLoss.losses }}</h2>
+  <h2 class="text-center">Founded: {{ vm.teamInfo.founded | date }}</h2>
+</div>
 
-<h2>{{ vm.teamInfo.name }}</h2>
-<table>
-  <thead>
-    <tr>
-      <th>Ranking</th> <th>Win/Loss Ratio</th> <th>Logo</th> <th>Founded</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <div>
-        <td>{{ vm.gameDetails.ranking }}</td>
-        <td>{{ vm.gameDetails.winLoss.wins }}:{{ vm.gameDetails.winLoss.losses }}</td>
-        <td><img ng-src="{{ vm.teamInfo.logoUrl }}"></img></td>
-        <td>{{ vm.teamInfo.founded | date }}</td>
-      </div>
-    </tr>
-  </tbody>
-</table> 
+<div class="table-responsive col-md-6">
+  <h2 class="text-center">Matches</h2>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th class="text-center">Date</th> <th class="text-center">Opponent</th> <th class="text-center">Outcome</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="game in vm.gameDetails.games | orderBy:'timestamp':true">
+        <div>
+          <td class="text-center"><a href="#/games/{{ game.id }}">{{ game.timestamp | date:'M/d/yy, h:mma' }}</a></td>
+          <td class="text-center" ng-if="game.teamIds[0] == vm.teamInfo.id"><a href="#/teams/{{ game.teamIds[1] }}">{{ game.teamIds[1] | teamIdToName }} </a></td>
+          <td class="text-center" ng-if="game.teamIds[1] == vm.teamInfo.id"><a href="#/teams/{{ game.teamIds[0] }}">{{ game.teamIds[0] | teamIdToName }} </a></td>
+          <td class="text-center" ng-if="game.wasTie">Tie</td>
+          <td class="text-center" ng-if="!game.wasTie && vm.teamInfo.id == game.winnerTeamId">Win</td>
+          <td class="text-center" ng-if="!game.wasTie && vm.teamInfo.id != game.winnerTeamId">Loss</td>
+        </div>
+      </tr>
+    </tbody>
+  </table> 
+</div>
 
-<h2>Games</h2>
-<table>
-  <thead>
-    <tr>
-      <th>Date</th> <th>Opponent</th> <th>Outcome</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr ng-repeat="game in vm.gameDetails.games | orderBy:'timestamp':true">
-      <div>
-        <td>{{ game.timestamp | date:'shortDate' }}</td>
-        <td ng-if="game.teamIds[0] == vm.teamInfo.id"><a href="#/teams/{{ game.teamIds[1] }}">{{ game.teamIds[1] | teamIdToName }} </a></td>
-        <td ng-if="game.teamIds[1] == vm.teamInfo.id"><a href="#/teams/{{ game.teamIds[0] }}">{{ game.teamIds[0] | teamIdToName }} </a></td>
-        <td ng-if="game.wasTie">Tie</td>
-        <td ng-if="!game.wasTie && vm.teamInfo.id == game.winnerTeamId">Win</td>
-        <td ng-if="!game.wasTie && vm.teamInfo.id != game.winnerTeamId">Loss</td>
-      </div>
-    </tr>
-  </tbody>
-</table> 
 
-<h2>Player Roster</h2>
-<table>
-  <thead>
-    <tr>
-      <th>Name</th> <th>Position</th> <th>Picture</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr ng-repeat="player in vm.players">
-      <div>
-        <td><a href="#/players/{{ player.id }}">{{ player.name }}</a></td>
-        <td>{{ player.position }}</td>
-        <td><img ng-src="{{ player.avatarUrl }}"></img></td>
+<div class="col-md-6">
+    <h2 class="text-center">Roster</h2>
+      <div class="playerBadge col-md-4" ng-repeat="player in vm.players">
+        <img ng-src="{{ player.avatarUrl }}" class="img-responsive img-circle center-block"></img></td>
+        <h4 class="text-center"><a href="#/players/{{ player.id }}">{{ player.name }}</a></h4>
+        <p class="text-center">{{ player.position }}</p>
       </div>
-    </tr>
-  </tbody>
-</table> 
+</div>

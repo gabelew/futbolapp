@@ -1,0 +1,19 @@
+.nostyle,
+.nostyle:focus {
+  color: #000;
+  text-decoration: none;
+}
+
+div.teamInfo {
+  background-color: #CCC;
+  padding-bottom: 30px;
+  padding-top: 30px;
+}
+
+div.playerBadge {
+  margin-bottom: 25px;
+}
+
+div.playerBadge h4 {
+  margin-top: 12px;
+}

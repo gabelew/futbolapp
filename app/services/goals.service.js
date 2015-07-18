@@ -13,7 +13,7 @@
     };
 
     function getGoals () {
-      return $http.get('http://futbol-api.goguardian.com/goals')
+      return $http.get('https://futbol-api.goguardian.com/goals')
         .then(getGoalsSuccess)
         .catch(getGoalsFailed);
 
@@ -27,7 +27,7 @@
     }
 
     function getPlayerGoals (playerId) {
-      return $http.get('http://futbol-api.goguardian.com/players/' + playerId + '/goals')
+      return $http.get('https://futbol-api.goguardian.com/players/' + playerId + '/goals')
         .then(getPlayerGoalsSuccess)
         .catch(getPlayerGoalsFailed);
 
@@ -41,7 +41,7 @@
     }
 
     function getGameGoals (gameId) {
-      return $http.get('http://futbol-api.goguardian.com/matches/' + gameId + '/goals')
+      return $http.get('https://futbol-api.goguardian.com/matches/' + gameId + '/goals')
         .then(getGameGoalsSuccess)
         .catch(getGameGoalsFailed);
 

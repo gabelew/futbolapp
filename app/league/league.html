@@ -1,17 +1,17 @@
-<table>
-  <thead>
-    <tr>
-      <th>Ranking</th> <th>Team</th> <th>Logo</th> <th>Founded</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr ng-repeat="team in vm.rankedTeams">
-      <div>
-        <td>{{ $index + 1 }}</td>
-        <td><a href="#/teams/{{ team.id }}">{{ team.name }}</a></td>
-        <td><img ng-src="{{ team.logoUrl }}"></img></td>
-        <td>{{ team.founded | date }}</td>
-      </div>
-    </tr>
-  </tbody>
-</table>
+<div class="col-md-6 col-md-offset-3">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th class="col-md-2 text-center">Ranking</th> <th class="col-md-10 text-center">Team Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="team in vm.rankedTeams">
+        <div>
+          <td class="text-center"><h2>{{ $index + 1 }}</h1></td>
+          <td class="text-center"><a href="#/teams/{{ team.id }}"><h3>{{ team.name }}</h2></a></td>
+        </div>
+      </tr>
+    </tbody>
+  </table>
+</div>

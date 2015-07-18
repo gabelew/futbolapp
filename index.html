@@ -1,21 +1,25 @@
 <!DOCTYPE html>
+<html lang="en">
   <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>GoFutbol</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="app/styles/app.css">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular-route.js"></script>
   </head>
+
   <body ng-app="futbolApp">
-    <div id="wrapper">
-      <header>
-        <h1>GoFutbol</h1>
-        <nav></nav>
-      </header>
-      
-      <div id="main">
-        <div ng-view></div>
+    <nav>
+      <div class="container-fluid">
+        <h1><a class="nostyle" href="#/teams">GoFutbol</a></h1>
       </div>
-      <footer></footer>
+    </nav>
+
+    <div class="container-fluid">
+        <div ng-view></div>
     </div>
 
     <!-- Modules -->

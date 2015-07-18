@@ -1,26 +1,30 @@
-<h2>Player: {{ vm.player.name }}</h2>
-<img ng-src="{{ vm.player.avatarUrl }}"></img>
-<p>Position: {{ vm.player.position }}</p>
-<p>Team: <a href="#/teams/{{ vm.player.teamId }}">{{ vm.player.teamId| teamIdToName }}</a></p>
-<p>Age: {{ vm.player.age }}</p>
-<p>Origin: {{ vm.player.origin.city }}, {{ vm.player.origin.country }}</p>
+<div class="jumbotron">
+  <h2 class="text-center">{{ vm.player.name }}</h2>
+  <img ng-src="{{ vm.player.avatarUrl }}" class="img-responsive img-circle center-block"></img>
+  <h3 class="text-center"><a href="#/teams/{{ vm.player.teamId }}">{{ vm.player.teamId| teamIdToName }}</a></h3>
+  <p class="text-center">{{ vm.player.position }}</p>
+  <p class="text-center">{{ vm.player.age }} years</p>
+  <p class="text-center">{{ vm.player.origin.city }}, {{ vm.player.origin.country }}</p>
+</div>
 
-<h2>Goals</h2>
-<p ng-if="vm.playerGoals.length == 0">N/A</p>
-<table ng-if="vm.playerGoals.length > 0">
-  <thead>
-    <tr>
-      <th>Match</th> <th>Match Minute</th> <th>Shot Distance (meters)</th> <th>Shot Location</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr ng-repeat="goal in vm.playerGoals | orderBy:'matchId'">
-      <div>
-        <td><a href="#/games/{{ goal.matchId }}">{{ goal.matchId }}</a></td>
-        <td>{{ goal.matchMinute }}</td>
-        <td>{{ goal.shot.distance}}</td>
-        <td>{{ goal.shot.location }}</td>
-      </div>
-    </tr>
-  </tbody>
-</table> 
+<h3 class="text-center">Goals</h3>
+<p class="text-center" ng-if="vm.playerGoals.length == 0">N/A</p>
+<div class="table-responsive col-md-6 col-md-offset-3">
+  <table class="table table-hover" ng-if="vm.playerGoals.length > 0">
+    <thead>
+      <tr>
+        <th class="text-center">Match</th> <th class="text-center">Match Minute</th> <th class="text-center">Shot Distance (meters)</th> <th class="text-center">Shot Location</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="goal in vm.playerGoals | orderBy:'matchId'">
+        <div>
+          <td class="text-center"><a href="#/games/{{ goal.matchId }}">{{ goal.matchId }}</a></td>
+          <td class="text-center">{{ goal.matchMinute }}</td>
+          <td class="text-center">{{ goal.shot.distance}}</td>
+          <td class="text-center">{{ goal.shot.location }}</td>
+        </div>
+      </tr>
+    </tbody>
+  </table> 
+</div>

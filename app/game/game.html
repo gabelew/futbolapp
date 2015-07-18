@@ -1,24 +1,28 @@
-<h2>{{ vm.game.teamIds[0] | teamIdToName }} vs {{ vm.game.teamIds[1] | teamIdToName }} </h2> 
-<h2>{{ vm.game.teamGoals[vm.game.teamIds[0]] }} - {{ vm.game.teamGoals[vm.game.teamIds[1]] }}</h2>
-<h3>{{ vm.game.timestamp | date }} </h3>
+<div class="jumbotron">
+  <h2 class="text-center"><a href="#/teams/{{ vm.game.teamIds[0] }}">{{ vm.game.teamIds[0] | teamIdToName }}</a> vs <a href="#/teams/{{ vm.game.teamIds[1] }}">{{ vm.game.teamIds[1] | teamIdToName }}</a></h2> 
+  <h2 class="text-center">{{ vm.game.teamGoals[vm.game.teamIds[0]] }} - {{ vm.game.teamGoals[vm.game.teamIds[1]] }}</h2>
+  <h3 class="text-center">{{ vm.game.timestamp | date:'EEE, MMM d, yyyy' }} </h3>
+</div>
 
-<h2>Goals</h2>
-<p ng-if="vm.gameGoals.length == 0">N/A</p>
-<table ng-if="vm.gameGoals.length > 0">
-  <thead>
-    <tr>
-      <th>Match Minute</th> <th>Scoring Team</th> <th>Player</th> <th>Shot Distance (meters)</th> <th>Shot Location</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr ng-repeat="goal in vm.gameGoals | orderBy:'matchMinute'">
-      <div>
-        <td>{{ goal.matchMinute }}</td>
-        <td>{{ goal.teamId | teamIdToName }}</td>
-        <td>{{ goal.playerId }}</td>
-        <td>{{ goal.shot.distance}}</td>
-        <td>{{ goal.shot.location }}</td>
-      </div>
-    </tr>
-  </tbody>
-</table> 
+<h2 class="text-center">Goals</h2>
+<p class="text-center" ng-if="vm.gameGoals.length == 0">N/A</p>
+<div class="table-responsive col-md-6 col-md-offset-3">
+  <table class="table table-hover" ng-if="vm.gameGoals.length > 0">
+    <thead>
+      <tr>
+        <th class="text-center">Match Minute</th> <th class="text-center">Scoring Team</th> <th class="text-center">Player</th> <th class="text-center">Shot Distance (meters)</th> <th class="text-center">Shot Location</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="goal in vm.gameGoals | orderBy:'matchMinute'">
+        <div>
+          <td class="text-center">{{ goal.matchMinute }}</td>
+          <td class="text-center"><a href="#/teams/{{ goal.teamId }}">{{ goal.teamId | teamIdToName }}</a></td>
+          <td class="text-center"><a href="#/players/{{ goal.playerId }}">{{ goal.playerId }}</a></td>
+          <td class="text-center">{{ goal.shot.distance}}</td>
+          <td class="text-center">{{ goal.shot.location }}</td>
+        </div>
+      </tr>
+    </tbody>
+  </table> 
+</div>
